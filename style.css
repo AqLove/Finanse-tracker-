@@ -1,3 +1,289 @@
-/* CSS Styles */
-/* CSS Styles */
-/* CSS Styles */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body,
+input,
+button,
+label,
+span,
+p,
+a {
+    font-family: 'Roboto Mono', monospace;
+}
+
+body {
+    min-height: 100vh;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #8BD96C;
+    background: linear-gradient(90deg, rgba(139, 217, 108, 1) 0%, rgba(221, 242, 126, 1) 50%, rgba(139, 217, 108, 1) 100%);
+    overflow: hidden;
+}
+
+.main_container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1100px;
+    padding: 20px;
+}
+
+.PF_container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    animation: shiftLeft 2s ease-in-out 0.4s forwards;
+}
+
+.PF_logo {
+    font-family: 'Isometra', sans-serif;
+    font-size: 150px;
+    font-weight: 900;
+    line-height: 1;
+    color: #1a2e1d;
+    margin: 0;
+    text-shadow: 0 10px 25px rgba(26, 46, 29, 0.2);
+}
+
+.brand_full_name {
+    font-size: 20px;
+    font-weight: 600;
+    color: #2d4a32;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    margin-top: 15px;
+    margin-right: -5px;
+    opacity: 0;
+    animation: fadeInText 2.7s ease-in-out 1s forwards;
+}
+
+/* ========================================================= */
+/* LOGIN CARD                                                */
+/* ========================================================= */
+
+.login_form {
+    max-width: 450px;
+    width: 100%;
+    padding: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    font-family: 'Roboto Mono', monospace;
+
+    /* Полупрозрачный стеклянный фон */
+    background: rgba(255, 255, 255, 0.65);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+
+    opacity: 0;
+    transform: translateX(50px);
+    animation: slideInForm 2s ease-in-out 1s forwards;
+}
+
+.login_form * {
+    font-family: 'Roboto Mono', monospace;
+}
+
+::placeholder {
+    font-family: 'Roboto Mono', monospace;
+    color: #888;
+}
+
+.flex-column>label {
+    color: #151717;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.inputForm {
+    border: 1.5px solid #ecedec;
+    border-radius: 10px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding-left: 12px;
+    padding-right: 12px;
+    background-color: rgba(255, 255, 255, 0.8);
+    transition: 0.2s ease-in-out;
+}
+
+.input {
+    margin-left: 10px;
+    border-radius: 10px;
+    border: none;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    font-size: 14px;
+    color: #333;
+}
+
+.input:focus {
+    outline: none;
+}
+
+.inputForm:focus-within {
+    border: 1.5px solid #58bc82;
+}
+
+.flex-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+    justify-content: space-between;
+}
+
+.flex-row>div>label {
+    font-size: 13px;
+    color: #333;
+    font-weight: 400;
+}
+
+/* Зеленый цвет для Forgot password и Sign Up */
+.span {
+    font-size: 13px;
+    margin-left: 5px;
+    color: #58bc82;
+    /* Зеленый цвет */
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.span:hover {
+    color: #45a56b;
+}
+
+.button-submit {
+    margin: 15px 0 5px 0;
+    background-color: #1a2e1d;
+    border: none;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 10px;
+    height: 50px;
+    width: 100%;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.button-submit:hover {
+    background-color: #2d4a32;
+}
+
+.p {
+    text-align: center;
+    color: #333;
+    font-size: 13px;
+    margin: 5px 0;
+}
+
+/* Ряд с иконками в один линию */
+.social-icons-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+    width: 100%;
+    margin-top: 5px;
+}
+
+/* Квадратные кнопки под иконки */
+.btn-icon {
+    flex: 1;
+    height: 46px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid #ededef;
+    background-color: #ffffff;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Настройки размера самих SVG логотипов */
+.btn-icon img {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+}
+
+/* Эффект при наведении */
+.btn-icon:hover {
+    border-color: #58bc82;
+    background-color: #f9fbf9;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* ========================================================= */
+/* АНИМАЦИИ И МЕДИА-ЗАПРОСЫ                                 */
+/* ========================================================= */
+
+@keyframes shiftLeft {
+    0% {
+        transform: translateX(50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeInText {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideInForm {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@media (max-width: 768px) {
+    .main_container {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .login_form {
+        padding: 30px;
+        width: 100%;
+    }
+}
+
+@font-face {
+    font-family: 'Isometra';
+    src: url('Isometra-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
