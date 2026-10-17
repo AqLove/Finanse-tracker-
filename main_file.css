@@ -1,0 +1,646 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #f8fafc;
+    color: #1e293b;
+    height: 100vh;
+    overflow: hidden;
+    /* Запрещаем скролл всей страницы целиком */
+}
+
+/* Главный контейнер, который держит меню и правую часть рядом */
+.main_container {
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+}
+
+/* ==========================================
+   СТИЛИ БОКОВОГО МЕНЮ (SIDEBAR)
+   ================================---------- */
+.sidebar {
+    width: 200px;
+    /* Полная ширина меню */
+
+    /* Красивый градиент в стиле экрана входа */
+    background: linear-gradient(135deg, rgba(17, 75, 62, 1) 0%, rgba(26, 110, 92, 1) 50%, rgba(13, 58, 48, 1) 100%);
+
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* Распределяет блоки: верх, центр, низ */
+    padding: 24px 20px;
+    height: 100vh;
+
+    /* Задел на будущее для плавной анимации */
+    transition: width 0.3s ease;
+    overflow: hidden;
+    white-space: nowrap;
+    /* Чтобы текст не переносился при сжатии */
+}
+
+/* 1. Верхний блок с логотипом */
+.sidebar-top {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.logo-box {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 20px;
+    font-weight: 700;
+    color: #ffffff;
+}
+
+.logo-box i {
+    width: 24px;
+    height: 24px;
+    color: #8BD96C;
+    /* Салатовый акцент для иконки банка */
+}
+
+/* 2. Центральный блок с навигацией */
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    /* Расстояние между пунктами меню */
+    flex-grow: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    color: #94a3b8;
+    /* Приглушенный цвет неактивных ссылок */
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 15px;
+    border-radius: 10px;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.nav-item i {
+    width: 20px;
+    height: 20px;
+}
+
+/* Эффект при наведении на пункт меню */
+.nav-item:hover {
+    background-color: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+}
+
+/* Активный пункт меню (Overview) */
+.nav-item.active {
+    background-color: rgba(255, 255, 255, 0.12);
+    color: #ffffff;
+}
+
+/* 3. Нижний блок (Помощь и кнопка перевода) */
+.sidebar-bottom {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.help-box {
+    background-color: rgba(0, 0, 0, 0.15);
+    padding: 14px;
+    border-radius: 12px;
+}
+
+.help-title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 4px;
+}
+
+.help-link {
+    font-size: 12px;
+    color: #8BD96C;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.help-link i {
+    width: 14px;
+    height: 14px;
+}
+
+/* Яркая салатовая кнопка New Transfer */
+.btn-transfer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    background-color: #8BD96C;
+    color: #114b3e;
+    font-weight: 700;
+    font-size: 14px;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-transfer:hover {
+    background-color: #7bc55c;
+}
+
+.btn-transfer i {
+    width: 18px;
+    height: 18px;
+}
+
+/* ==========================================
+   СТИЛИ ПРАВОЙ ОБЛАСТИ И ШАПКИ
+   ================================---------- */
+
+/* Правая рабочая область занимает всё оставшееся место */
+.content_wrapper {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+    /* Скролл только для правого контента */
+}
+
+/* Верхняя шапка */
+.top_header {
+    width: 100%;
+    height: 55px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #e2e8f0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+}
+
+/* 1. Блок поиска (Search Bar) */
+.search_bar {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #f8fafc;
+    border: 1px solid #e2e8f0;
+    border-radius: 20px;
+    padding: 8px 16px;
+    width: 320px;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+/* Эффект при клике на поиск */
+.search_bar:focus-within {
+    border-color: #114b3e;
+    box-shadow: 0 0 0 3px rgba(17, 75, 62, 0.1);
+}
+
+.search_bar i {
+    width: 18px;
+    height: 18px;
+    color: #94a3b8;
+}
+
+.search_input {
+    border: none;
+    outline: none;
+    background: transparent;
+    width: 100%;
+    font-size: 14px;
+    color: #1e293b;
+    font-family: inherit;
+}
+
+.search_input::placeholder {
+    color: #94a3b8;
+}
+
+/* 2. Правая часть (Уведомления + Профиль) */
+.header_right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Кнопка уведомлений */
+.notification_btn {
+    position: relative;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 6px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.notification_btn:hover {
+    background-color: #f1f5f9;
+    color: #1e293b;
+}
+
+.notification_btn i {
+    width: 20px;
+    height: 20px;
+    color: #0f172a;
+}
+
+/* Красная точка уведомления */
+.notification_badge {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    width: 8px;
+    height: 8px;
+    background-color: #ef4444;
+    border-radius: 50%;
+    border: 2px solid #ffffff;
+}
+
+/* Вертикальная линия-разделитель */
+.header_divider {
+    width: 1px;
+    height: 28px;
+    background-color: #e2e8f0;
+}
+
+/* Профиль пользователя */
+.user_profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    cursor: pointer;
+}
+
+.user_info {
+    display: flex;
+    flex-direction: column;
+    text-align: right;
+}
+
+.user_name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+}
+
+.user_status {
+    font-size: 12px;
+    color: #94a3b8;
+}
+
+.user_avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.profile_arrow {
+    width: 16px;
+    height: 16px;
+    color: #94a3b8;
+}
+
+/* ==========================================
+   СТИЛИ БАНКОВСКОЙ КАРТЫ (FLIP CARD)
+   ================================---------- */
+.flip-card {
+    background-color: transparent;
+    width: 100%;
+    max-width: 280px;
+    height: 165px;
+    perspective: 1000px;
+    color: white;
+    margin: 0 auto;
+}
+
+.heading_8264 {
+    position: absolute;
+    letter-spacing: .2em;
+    font-size: 0.6em;
+    top: 1.5em;
+    left: 2em;
+}
+
+.logo {
+    position: absolute;
+    top: 1.2em;
+    right: 1.5em;
+}
+
+.chip {
+    position: absolute;
+    top: 3.8em;
+    left: 2em;
+}
+
+.contactless {
+    position: absolute;
+    top: 4.2em;
+    left: 5.2em;
+}
+
+.number {
+    position: absolute;
+    font-weight: bold;
+    font-size: .75em;
+    top: 8.5em;
+    left: 1.8em;
+    letter-spacing: 0.1em;
+}
+
+.valid_thru {
+    position: absolute;
+    font-weight: bold;
+    font-size: .4em;
+    top: 11.5em;
+    left: 2.2em;
+}
+
+.date_8264 {
+    position: absolute;
+    font-weight: bold;
+    font-size: 0.6em;
+    top: 12.7em;
+    left: 2.2em;
+}
+
+.name {
+    position: absolute;
+    font-weight: bold;
+    font-size: 0.6em;
+    top: 15.2em;
+    left: 2em;
+    letter-spacing: 0.05em;
+}
+
+.strip {
+    position: absolute;
+    background-color: black;
+    width: 100%;
+    height: 2em;
+    top: 1.5em;
+    background: repeating-linear-gradient(45deg,
+            #303030,
+            #303030 10px,
+            #202020 10px,
+            #202020 20px);
+}
+
+.mstrip {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 10em;
+    height: 0.8em;
+    top: 5em;
+    left: 1.5em;
+    border-radius: 2.5px;
+}
+
+.sstrip {
+    position: absolute;
+    background-color: rgb(255, 255, 255);
+    width: 3.5em;
+    height: 0.8em;
+    top: 5em;
+    right: 1.5em;
+    border-radius: 2.5px;
+}
+
+.code {
+    font-weight: bold;
+    text-align: center;
+    margin: .15em;
+    color: black;
+    font-size: 0.8em;
+}
+
+.flip-card-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+    transform: rotateY(180deg);
+}
+
+.flip-card-front,
+.flip-card-back {
+    box-shadow: 0 8px 14px 0 rgba(0, 0, 0, 0.2);
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    border-radius: 1rem;
+}
+
+.flip-card-front {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
+    background: linear-gradient(135deg, rgba(17, 75, 62, 1) 0%, rgba(26, 110, 92, 1) 50%, rgba(13, 58, 48, 1) 100%);
+}
+
+.flip-card-back {
+    box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 2px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -1px 0px inset;
+    background: linear-gradient(135deg, rgba(17, 75, 62, 1) 0%, rgba(26, 110, 92, 1) 50%, rgba(13, 58, 48, 1) 100%);
+    transform: rotateY(180deg);
+}
+
+/* ==========================================
+   СТИЛИ СЕТКИ ДАШБОРДА И МОДАЛЬНОГО ОКНА
+   ================================---------- */
+
+.dashboard_body {
+    padding: 30px;
+    display: flex;
+    gap: 30px;
+    background-color: #f8fafc;
+    flex: 1;
+}
+
+/* Левая колонка */
+.left_column {
+    flex: 2.2;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Правая колонка */
+.right_column {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* Кнопка добавления карты */
+.btn-add-card {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 100%;
+    max-width: 280px;
+    padding: 8px 12px;
+    height: 44px;
+    margin: 0 auto;
+    background-color: #ffffff;
+    color: #114b3e;
+    font-weight: 600;
+    font-size: 14px;
+    border: 2px dashed #114b3e;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.btn-add-card:hover {
+    background-color: #f1f5f9;
+}
+
+.btn-add-card i {
+    width: 16px;
+    height: 16px;
+}
+
+/* Оверлей модального окна */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+    z-index: 1000;
+}
+
+.modal-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* Контент модального окна */
+.modal-content {
+    background-color: #ffffff;
+    padding: 25px 30px;
+    border-radius: 16px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+    transform: translateY(-20px);
+    transition: transform 0.3s ease;
+}
+
+.modal-overlay.active .modal-content {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    font-size: 18px;
+    color: #0f172a;
+}
+
+.close-modal-btn {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: #64748b;
+}
+
+.close-modal-btn i {
+    width: 20px;
+    height: 20px;
+}
+
+/* Форма */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+
+.form-group label {
+    font-size: 13px;
+    font-weight: 500;
+    color: #475569;
+}
+
+.form-group input {
+    padding: 10px 14px;
+    border: 1px solid #cbd5e1;
+    border-radius: 8px;
+    font-size: 14px;
+    outline: none;
+    font-family: inherit;
+    transition: border-color 0.2s;
+}
+
+.form-group input:focus {
+    border-color: #114b3e;
+}
+
+.form-row {
+    display: flex;
+    gap: 12px;
+}
+
+.btn-submit-card {
+    width: 100%;
+    padding: 12px;
+    background-color: #114b3e;
+    color: #ffffff;
+    font-weight: 600;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-submit-card:hover {
+    background-color: #0d3a30;
+}
