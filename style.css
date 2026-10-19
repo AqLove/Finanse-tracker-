@@ -1,3 +1,11 @@
+@font-face {
+    font-family: 'Isometra';
+    src: url('Isometra-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -16,13 +24,12 @@ a {
 
 body {
     min-height: 100vh;
-    margin: 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #8BD96C;
+    background: #8bd96c;
     background: linear-gradient(90deg, rgba(139, 217, 108, 1) 0%, rgba(221, 242, 126, 1) 50%, rgba(139, 217, 108, 1) 100%);
-    overflow: hidden;
+    overflow-x: hidden;
 }
 
 .main_container {
@@ -50,51 +57,44 @@ body {
     font-weight: 900;
     line-height: 1;
     color: #1a2e1d;
-    margin: 0;
     text-shadow: 0 10px 25px rgba(26, 46, 29, 0.2);
 }
 
 .brand_full_name {
-    font-size: 20px;
-    font-weight: 600;
-    color: #2d4a32;
-    letter-spacing: 5px;
-    text-transform: uppercase;
     margin-top: 15px;
     margin-right: -5px;
+    font-size: 20px;
+    font-weight: 600;
+    letter-spacing: 5px;
+    text-transform: uppercase;
+    color: #2d4a32;
     opacity: 0;
     animation: fadeInText 2.7s ease-in-out 1s forwards;
 }
 
-/* ========================================================= */
-/* LOGIN CARD                                                */
-/* ========================================================= */
-
 .login_form {
-    max-width: 450px;
     width: 100%;
-    padding: 30px;
+    max-width: 450px;
     display: flex;
     flex-direction: column;
     gap: 12px;
-    font-family: 'Roboto Mono', monospace;
-
-    /* Полупрозрачный стеклянный фон */
+    padding: 30px;
     background: rgba(255, 255, 255, 0.65);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
-
     border: 1px solid rgba(255, 255, 255, 0.4);
     border-radius: 20px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-
     opacity: 0;
     transform: translateX(50px);
     animation: slideInForm 2s ease-in-out 1s forwards;
+    transition: opacity 0.35s ease, transform 0.35s ease;
 }
 
-.login_form * {
-    font-family: 'Roboto Mono', monospace;
+.login_form.is-leaving {
+    animation: none;
+    opacity: 0;
+    transform: translateY(-12px) scale(0.98);
 }
 
 ::placeholder {
@@ -103,29 +103,37 @@ body {
 }
 
 .flex-column>label {
-    color: #151717;
-    font-weight: 600;
     font-size: 14px;
+    font-weight: 600;
+    color: #151717;
 }
 
 .inputForm {
-    border: 1.5px solid #ecedec;
-    border-radius: 10px;
     height: 50px;
     display: flex;
     align-items: center;
-    padding-left: 12px;
-    padding-right: 12px;
+    padding: 0 12px;
+    border: 1.5px solid #ecedec;
+    border-radius: 10px;
     background-color: rgba(255, 255, 255, 0.8);
-    transition: 0.2s ease-in-out;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.inputForm:focus-within {
+    border-color: #58bc82;
+}
+
+.inputForm.invalid {
+    border-color: #d64545;
+    box-shadow: 0 0 0 3px rgba(214, 69, 69, 0.12);
 }
 
 .input {
-    margin-left: 10px;
-    border-radius: 10px;
-    border: none;
     width: 100%;
     height: 100%;
+    margin-left: 10px;
+    border: none;
+    border-radius: 10px;
     background: transparent;
     font-size: 14px;
     color: #333;
@@ -135,95 +143,146 @@ body {
     outline: none;
 }
 
-.inputForm:focus-within {
-    border: 1.5px solid #58bc82;
+.toggle_password {
+    display: grid;
+    place-items: center;
+    padding: 6px;
+    border: none;
+    border-radius: 8px;
+    background: transparent;
+    color: #555;
+    cursor: pointer;
+}
+
+.toggle_password:hover {
+    background: rgba(26, 46, 29, 0.06);
+}
+
+.toggle_password[aria-pressed="true"] {
+    color: #58bc82;
+}
+
+.toggle_password svg {
+    fill: currentColor;
 }
 
 .flex-row {
     display: flex;
-    flex-direction: row;
     align-items: center;
-    gap: 10px;
     justify-content: space-between;
+    gap: 10px;
 }
 
 .flex-row>div>label {
     font-size: 13px;
-    color: #333;
     font-weight: 400;
+    color: #333;
 }
 
-/* Зеленый цвет для Forgot password и Sign Up */
 .span {
-    font-size: 13px;
     margin-left: 5px;
-    color: #58bc82;
-    /* Зеленый цвет */
+    font-size: 13px;
     font-weight: 600;
+    color: #3f9f67;
     cursor: pointer;
     transition: color 0.2s ease;
 }
 
 .span:hover {
-    color: #45a56b;
+    color: #2f7f50;
+}
+
+.link_reset {
+    padding: 0;
+    border: none;
+    background: none;
+}
+
+.form_error {
+    padding: 10px 12px;
+    border-radius: 10px;
+    background: rgba(214, 69, 69, 0.1);
+    color: #b33a3a;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.5;
+}
+
+.form_error[hidden] {
+    display: none;
 }
 
 .button-submit {
-    margin: 15px 0 5px 0;
-    background-color: #1a2e1d;
+    width: 100%;
+    height: 50px;
+    margin: 15px 0 5px;
     border: none;
-    color: white;
+    border-radius: 10px;
+    background-color: #1a2e1d;
+    color: #ffffff;
     font-size: 15px;
     font-weight: 600;
-    border-radius: 10px;
-    height: 50px;
-    width: 100%;
     cursor: pointer;
-    transition: background-color 0.2s ease-in-out;
+    transition: background-color 0.2s ease-in-out, transform 0.1s;
 }
 
 .button-submit:hover {
     background-color: #2d4a32;
 }
 
-.p {
-    text-align: center;
-    color: #333;
-    font-size: 13px;
-    margin: 5px 0;
+.button-submit:active {
+    transform: translateY(1px);
 }
 
-/* Ряд с иконками в один линию */
+.p {
+    margin: 5px 0;
+    text-align: center;
+    font-size: 13px;
+    color: #333;
+}
+
+.line {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #667;
+}
+
+.line::before,
+.line::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: rgba(26, 46, 29, 0.15);
+}
+
 .social-icons-row {
+    width: 100%;
     display: flex;
     justify-content: space-between;
     gap: 10px;
-    width: 100%;
     margin-top: 5px;
 }
 
-/* Квадратные кнопки под иконки */
 .btn-icon {
     flex: 1;
     height: 46px;
-    border-radius: 10px;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid #ededef;
+    border-radius: 10px;
     background-color: #ffffff;
     cursor: pointer;
     transition: all 0.2s ease-in-out;
 }
 
-/* Настройки размера самих SVG логотипов */
 .btn-icon img {
     width: 22px;
     height: 22px;
     object-fit: contain;
 }
 
-/* Эффект при наведении */
 .btn-icon:hover {
     border-color: #58bc82;
     background-color: #f9fbf9;
@@ -231,9 +290,10 @@ body {
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* ========================================================= */
-/* АНИМАЦИИ И МЕДИА-ЗАПРОСЫ                                 */
-/* ========================================================= */
+:focus-visible {
+    outline: 2px solid #1a6e5c;
+    outline-offset: 2px;
+}
 
 @keyframes shiftLeft {
     0% {
@@ -275,15 +335,26 @@ body {
         gap: 30px;
     }
 
+    .PF_container {
+        animation: none;
+    }
+
+    .PF_logo {
+        font-size: 96px;
+    }
+
     .login_form {
-        padding: 30px;
-        width: 100%;
+        padding: 24px;
     }
 }
 
-@font-face {
-    font-family: 'Isometra';
-    src: url('Isometra-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+@media (prefers-reduced-motion: reduce) {
+
+    .PF_container,
+    .brand_full_name,
+    .login_form {
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
 }
