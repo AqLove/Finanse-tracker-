@@ -2,6 +2,8 @@
 
 A personal finance dashboard built with **vanilla HTML, CSS and JavaScript**. No frameworks and no build step. You can track income and spending, see your monthly cash flow, manage bank cards and save toward goals. All data stays in your browser.
 
+**[Live demo](https://aqlove.github.io/Finanse-tracker-/)**. Sign in with any email and a password of 6+ characters, or click **Open the demo**.
+
 ## Features
 
 - **Sign-in page** with client-side validation, a show/hide password toggle, "remember me" (`localStorage` vs `sessionStorage`) and a one-click demo login
