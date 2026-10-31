@@ -4,6 +4,8 @@ A personal finance dashboard built with **vanilla HTML, CSS and JavaScript**. No
 
 **[Live demo](https://aqlove.github.io/Finanse-tracker-/)**. Sign in with any email and a password of 6+ characters, or click **Open the demo**.
 
+**Presentation (RU):** [view PDF](docs/Finance_Tracker_Presentation.pdf) · [download PowerPoint](https://github.com/AqLove/Finanse-tracker-/raw/main/docs/Finance_Tracker_Presentation.pptx)
+
 ## Features
 
 - **Sign-in page** with client-side validation, a show/hide password toggle, "remember me" (`localStorage` vs `sessionStorage`) and a one-click demo login
